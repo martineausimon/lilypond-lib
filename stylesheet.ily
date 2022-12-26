@@ -44,38 +44,3 @@
     }
   }
 }
-
-xBook = 
-#(define-void-function (key scores)
-                       ((string? "") list?)
-     (print-book-with-defaults
-   #{ \book {
-        #(if (not (string-null? key))
-           #{ \bookOutputSuffix $key #}
-           "")
-        \paper {
-          oddHeaderMarkup = \markup {
-            \if \on-first-page {
-            #(if (not (string-null? key))
-               #{ \markup \circle \pad-around #2 \sans $key #}
-               "")
-            } 
-            \unless \on-first-page-of-part {
-              \sans \fromproperty #'header:title
-              #(if (not (string-null? key))
-                 #{ \markup \sans \concat { "[" $key "]"  } #}
-                 "")
-              \sans { "- p." \fromproperty #'page:page-number-string }
-            }
-          }
-          evenHeaderMarkup = \markup {
-            \sans \fromproperty #'header:title
-            #(if (not (string-null? key))
-               #{ \markup \sans \concat { "[" $key "]"  } #}
-               "")
-            \sans { "- p." \fromproperty #'page:page-number-string }
-          }
-        }
-        $@scores
-      } 
-   #}))

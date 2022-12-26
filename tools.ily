@@ -57,7 +57,7 @@ startB =
              \lower #.3 \fontsize #-4.2 #partial
              \hspace #.1 }
       \tweak style #'line
-      \tweak thickness #1.5
+      \tweak thickness #1.2
       \tweak bound-details.left.stencil-align-dir-y #0
       \tweak bound-details.left.padding 0
       \tweak bound-details.left.attach-dir -1
@@ -80,7 +80,7 @@ startB =
           \hspace #.1
         }
       \tweak style #'line
-      \tweak thickness #1.5
+      \tweak thickness #1.2
       \tweak bound-details.left.stencil-align-dir-y #-0.25
       \tweak bound-details.left.padding 0
       \tweak bound-details.left.attach-dir -1
@@ -157,3 +157,40 @@ naturalizeMusic =
 #(define-music-function (mus)
   (ly:music?)
   (naturalize mus))
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+xBook = 
+#(define-void-function (key scores)
+                       ((string? "") list?)
+     (print-book-with-defaults
+   #{ \book {
+        #(if (not (string-null? key))
+           #{ \bookOutputSuffix $key #}
+           "")
+        \paper {
+          oddHeaderMarkup = \markup {
+            \if \on-first-page {
+            #(if (not (string-null? key))
+               #{ \markup \circle \pad-around #2 \sans $key #}
+               "")
+            } 
+            \unless \on-first-page-of-part {
+              \sans \fromproperty #'header:title
+              #(if (not (string-null? key))
+                 #{ \markup \sans \concat { "[" $key "]"  } #}
+                 "")
+              \sans { "- p." \fromproperty #'page:page-number-string }
+            }
+          }
+          evenHeaderMarkup = \markup {
+            \sans \fromproperty #'header:title
+            #(if (not (string-null? key))
+               #{ \markup \sans \concat { "[" $key "]"  } #}
+               "")
+            \sans { "- p." \fromproperty #'page:page-number-string }
+          }
+        }
+        $@scores
+      } 
+   #}))
