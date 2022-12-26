@@ -1,19 +1,17 @@
 # lilypond-lib
 
-This is my personal framework for LilyPond scores.
-It's a WIP, and I regularly make additions or modifications,
-so use it at your own risk.
+This is my personal framework for LilyPond scores. It's a WIP, and I regularly make additions or modifications.
 
 ## Installation
 
 Clone this repository, e.g. in `$HOME` folder :
 
 ```bash
-cd
+cd $HOME
 git clone https://github.com/martineausimon/lilypond-lib
 ```
 
-Add `lilypond-lib/` dir to LilyPond include path, then use :
+Add `lilypond-lib/` dir to [LilyPond include path](https://lilypond.org/doc/v2.24/Documentation/notation/including-lilypond-files), then use :
 
 ```lilypond
 \version "2.24.0"
@@ -24,9 +22,7 @@ Add `lilypond-lib/` dir to LilyPond include path, then use :
 
 This framework is based on the "Futura PT" font, which is not open source. That's why this repository contains the "Jost" font, an open source alternative ([OFL](https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL)) that is very similar as a fallback font if you can't use Futura PT.
 
-Adapt and add this lines to 
-`~/.config/fontconfig/conf.d/10-lilypond-fonts.conf`
-to install Jost fonts :
+Adapt and add this lines to `~/.config/fontconfig/conf.d/10-lilypond-fonts.conf` to install Jost fonts :
 
 ```xml
 <?xml version='1.0'?>
@@ -35,6 +31,8 @@ to install Jost fonts :
   <dir>~/path/to/lilypond-lib/fonts/</dir>
 </fontconfig>
 ```
+
+Then run `fc-cache -f`
 
 ## Tools
 
