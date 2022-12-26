@@ -28,7 +28,7 @@ Adapt and add this lines to `~/.config/fontconfig/conf.d/10-lilypond-fonts.conf`
 <?xml version='1.0'?>
 <!DOCTYPE fontconfig SYSTEM 'fonts.dtd'>
 <fontconfig>
-  <dir>~/path/to/lilypond-lib/fonts/</dir>
+  <dir>/path/to/lilypond-lib/fonts/</dir>
 </fontconfig>
 ```
 
