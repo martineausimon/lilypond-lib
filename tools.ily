@@ -48,54 +48,44 @@ singleB =
 startB = 
 #(define-event-function (partial fretnum) 
    ((string? "") number? )
-   (if (not (string-null? partial)) 
-   #{
-      \tweak bound-details.left.text
-        \markup 
-          \fontsize #-1 \normal-text \bold \concat { 
-          #(format #f "~@r" fretnum)
-             \lower #.3 \fontsize #-4.2 #partial
-             \hspace #.1 }
-      \tweak style #'line
-      \tweak thickness #1.2
-      \tweak bound-details.left.stencil-align-dir-y #0
-      \tweak bound-details.left.padding 0
-      \tweak bound-details.left.attach-dir -1
-      \tweak bound-details.left-broken.text ##f
-      \tweak bound-details.left-broken.attach-dir -1
-      \tweak bound-details.right.padding 0
-      \tweak bound-details.right.attach-dir 1
-      \tweak bound-details.right-broken.text ##f
-      \tweak bound-details.right.text
-        \markup
-          \with-dimensions #'(0 . 0) #'(-.3 . 0) 
-          \draw-line #'(0 . -0.4)
-      \startTextSpan 
-   #}
-    #{
-      \tweak bound-details.left.text
-        \markup 
-          \fontsize #-1 \normal-text \bold \concat { 
-          #(format #f "~@r" fretnum)
-          \hspace #.1
-        }
-      \tweak style #'line
-      \tweak thickness #1.2
-      \tweak bound-details.left.stencil-align-dir-y #-0.25
-      \tweak bound-details.left.padding 0
-      \tweak bound-details.left.attach-dir -1
-      \tweak bound-details.left-broken.text ##f
-      \tweak bound-details.left-broken.attach-dir -1
-      \tweak bound-details.right.padding 0
-      \tweak bound-details.right.attach-dir 1
-      \tweak bound-details.right-broken.text ##f
-      \tweak bound-details.right.text
-        \markup
-          \with-dimensions #'(0 . 0) #'(-.3 . 0) 
-          \draw-line #'(0 . -0.4)
-      \startTextSpan 
-   #})
-)
+   (let ((barre-event
+         #{
+            \tweak style #'line
+            \tweak thickness #1.2
+            \tweak bound-details.left.padding 0
+            \tweak bound-details.left.attach-dir -1
+            \tweak bound-details.left-broken.text ##f
+            \tweak bound-details.left-broken.attach-dir -1
+            \tweak bound-details.right.padding 0
+            \tweak bound-details.right.attach-dir 1
+            \tweak bound-details.right-broken.text ##f
+            \tweak bound-details.right.text
+              \markup
+                \with-dimensions #'(0 . 0) #'(-.3 . 0) 
+                \draw-line #'(0 . -0.4)
+            \startTextSpan 
+          #})) 
+     (if (string-null? partial)
+          #{
+            \tweak bound-details.left.text
+              \markup 
+                \fontsize #-1 \normal-text \bold \concat { 
+                #(format #f "~@r" fretnum)
+                \hspace #.1
+              }
+            \tweak bound-details.left.stencil-align-dir-y #-0.25
+            #barre-event
+          #}
+          #{
+            \tweak bound-details.left.text
+              \markup 
+                \fontsize #-1 \normal-text \bold \concat { 
+                #(format #f "~@r" fretnum)
+                \lower #.3 \fontsize #-4.2 #partial
+                \hspace #.1 }
+            \tweak bound-details.left.stencil-align-dir-y #0
+            #barre-event
+          #})))
 
 stopB = \stopTextSpan
 
