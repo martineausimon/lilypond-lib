@@ -10,6 +10,7 @@
   \override Score.TimeSignature.break-visibility    = #'#(#f #t #t)
   \override Score.RehearsalMark.self-alignment-X    = #-1
   \override Score.RehearsalMark.padding             = #3.5
+  \override Score.MetronomeMark.padding             = #2.5
   \override Score.RehearsalMark.break-align-symbols = #'(left-edge)
   \override Score.VoltaBracketSpanner.padding       = #2
   \override Score.TimeSignature.style               = #'numbered
