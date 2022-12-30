@@ -126,3 +126,13 @@ Add barre indication for fretted strings instruments
   \tuplet 3/2 { fis'4 g8 \startB "3" 3 } d8 bes \stopB
 }
 ```
+
+### Parenthesis tool
+
+Add several notes/chords between parenthesis :
+
+```lilypond
+\relative c' {
+  \openParen a b c \closeParen d
+}
+```

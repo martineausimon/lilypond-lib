@@ -184,3 +184,28 @@ xBook =
         $@scores
       } 
    #}))
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+#(define ((paren-stencil start) grob) 
+(let* ((par-list (parentheses-interface::calc-parenthesis-stencils grob)) 
+        (null-par (grob-interpret-markup grob (markup #:null)))) 
+  (if start 
+     (list (car par-list) null-par) 
+     (list null-par (cadr par-list))))) 
+
+openParen = 
+#(define-music-function (parser location note) 
+    (ly:music?) 
+  #{ 
+    \once \override Parentheses.stencils = #(paren-stencil #t) 
+    \parenthesize #note 
+  #}) 
+
+closeParen = 
+#(define-music-function (parser location note) 
+    (ly:music?) 
+  #{ 
+    \once \override Parentheses.stencils = #(paren-stencil #f) 
+    \parenthesize #note 
+  #})
