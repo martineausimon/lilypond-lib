@@ -16,6 +16,7 @@
   \override LyricText.font-family             = #'sans
   \override Score.BarNumber.font-family       = #'sans
   \override Score.VoltaBracket.font-name      = #'"Futura PT demi,Jost SemiBold"
+  \override Score.MetronomeMark.font-name     = #'"Futura PT demi,Jost SemiBold"
   \override Score.VoltaBracket.font-size      = #-1
   \override Staff.StringNumber.font-name      = #'"Futura PT demi,Jost SemiBold"
   \override Staff.Fingering.font-name         = #'"Futura PT demi,Jost SemiBold"
