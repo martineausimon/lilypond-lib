@@ -4,14 +4,13 @@ This is my personal framework for LilyPond scores. It's a WIP, and I regularly m
 
 ## Installation
 
-Clone this repository, e.g. in `$HOME` folder :
+Clone this repository :
 
 ```bash
-cd $HOME
 git clone https://github.com/martineausimon/lilypond-lib
 ```
 
-Add `lilypond-lib/` dir to [LilyPond include path](https://lilypond.org/doc/v2.24/Documentation/notation/including-lilypond-files), then use :
+Add `lilypond-lib/` dir to [LilyPond include path](https://lilypond.org/doc/v2.24/Documentation/notation/including-lilypond-files), [install fonts](https://github.com/martineausimon/lilypond-lib#stylesheet--fonts), then use :
 
 ```lilypond
 \version "2.24.0"
