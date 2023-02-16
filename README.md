@@ -13,7 +13,7 @@ git clone https://github.com/martineausimon/lilypond-lib
 Add `lilypond-lib/` dir to [LilyPond include path](https://lilypond.org/doc/v2.24/Documentation/notation/including-lilypond-files), [install fonts](https://github.com/martineausimon/lilypond-lib#stylesheet--fonts), then use :
 
 ```lilypond
-\version "2.24.0"
+\version "2.24.1"
 \include "lilypond-lib.ily"
 ```
 
