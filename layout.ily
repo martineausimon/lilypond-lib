@@ -10,11 +10,10 @@
   \override Staff.StringNumber.script-priority        = 1000
   \override Staff.StringNumber.staff-padding          = #0.5
   \override Staff.Fingering.staff-padding             = #0.5
-  \override Score.RehearsalMark.break-align-symbols   = #'(left-edge)
-  \override Score.RehearsalMark.padding               = #3.5
-  \override Score.RehearsalMark.self-alignment-X      = #-1
   \override Score.MetronomeMark.padding               = #2.5
   \override Score.VoltaBracketSpanner.padding         = #2
+  \override Score.JumpScript.padding                  = #1.5
+  \override Score.SectionLabel.padding                = #2.5
   \override Score.TimeSignature.break-visibility      = #'#(#f #t #t)
   \override Score.TimeSignature.style                 = #'numbered
 }
