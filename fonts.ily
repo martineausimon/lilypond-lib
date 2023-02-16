@@ -18,6 +18,10 @@
   \override Score.JumpScript.font-name        = #'"Futura PT book italic,Jost Italic"
   \override Score.VoltaBracket.font-name      = #'"Futura PT demi,Jost SemiBold"
   \override Score.MetronomeMark.font-name     = #'"Futura PT demi,Jost SemiBold"
+  \override Score.RehearsalMark.font-name     = #'"Futura PT demi,Jost SemiBold"
+  \override Score.TextMark.font-family        = #'sans
+  \override Score.CodaMark.font-size          = #4
+  \override Score.SegnoMark.font-size         = #4
   \override Score.SectionLabel.font-family    = #'sans
   \override Score.VoltaBracket.font-size      = #-1
   \override Staff.StringNumber.font-name      = #'"Futura PT demi,Jost SemiBold"
