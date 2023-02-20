@@ -1,6 +1,5 @@
 \include "./fonts.ily"
 \include "./layout.ily"
-\include "./marks.ily"
 \include "./stylesheet.ily"
 \include "./tools.ily"
 \include "./chords.ily"
