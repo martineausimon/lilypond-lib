@@ -11,6 +11,12 @@
   \set Staff.fingeringOrientations          = #'(left)
   \set Staff.breathMarkType                 = #'outsidecomma
   \accidentalStyle Score.modern
+  \override TextSpanner.style = #'dashed-line
+  \override TextSpanner.dash-fraction = #0.3
+  \override TextSpanner.dash-period = #1
+  \override DynamicTextSpanner.style = #'dashed-line
+  \override DynamicTextSpanner.dash-fraction = #0.3
+  \override DynamicTextSpanner.dash-period = #1
   \override Staff.KeyCancellation.break-visibility    = #all-invisible
   \override Staff.StringNumber.outside-staff-priority = 0
   \override Staff.StringNumber.script-priority        = 1000
