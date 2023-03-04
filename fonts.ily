@@ -12,6 +12,8 @@
   \override Parentheses.font-size             = #0
   \override TextSpanner.font-name             = #'"Futura PT book italic,Jost Italic"
   \override TextSpanner.font-size             = #-1
+  \override DynamicTextSpanner.font-name      = #'"Futura PT book italic,Jost Italic"
+  \override DynamicTextSpanner.font-size      = #-1
   \override TextScript.font-family            = #'sans
   \override LyricText.font-family             = #'sans
   \override Score.BarNumber.font-family       = #'sans
@@ -28,6 +30,8 @@
   \override Staff.Fingering.font-name         = #'"Futura PT demi,Jost SemiBold"
   \override Staff.OttavaBracket.font-name     = #'"Futura PT book italic,Jost SemiBold Italic"
   \override Staff.OttavaBracket.font-size     = #-2
+  \override Staff.InstrumentName.font-family  = #'sans
 }
 
-\markup bold = \markup \override #'(font-name . "Futura PT Demi,Jost SemiBold") \etc
+\markup bold   = \markup \override #'(font-name . "Futura PT Demi,Jost SemiBold") \etc
+\markup italic = \markup \override #'(font-name . "Futura PT book italic,Jost Italic") \etc
