@@ -11,6 +11,13 @@ kick = \withMusicProperty untransposable ##t \xNote \etc
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\layout {
+  \context {
+    \Voice
+    \consists Horizontal_bracket_engraver
+  }
+}
+
 xSpan =
 #(define-music-function (txt mus)
      ((string? "") ly:music?)
