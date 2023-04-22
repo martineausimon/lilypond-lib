@@ -29,6 +29,7 @@
   \override Score.CodaMark.padding                    = #1.5
   \override Score.SegnoMark.padding                   = #1.5
   \override Score.SectionLabel.stencil = #(make-stencil-rounded-boxer 0.1 0.8 1.0)
+  \override Score.SectionLabel.outside-staff-priority = #2000
   \override Score.TimeSignature.break-visibility      = #'#(#f #t #t)
   \override Score.TimeSignature.style                 = #'numbered
   \override Score.RehearsalMark.stencil = #(make-stencil-circler 0.1 0.9 ly:text-interface::print)
