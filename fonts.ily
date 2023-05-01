@@ -1,17 +1,10 @@
-$(if (ly:version? >= '(2 25 4))
-     #{
-       \paper {
-         fonts.sans = "Futura PT,Jost"
-       }
-     #}
-     #{
-       \paper {
-          fonts = #(set-global-fonts
-              #:sans "Futura PT,Jost"
-              #:factor (/ staff-height pt 20)
-            )
-       }
-     #})
+\paper {
+  #(define fonts
+    (set-global-fonts
+      #:sans "Futura PT,Jost"
+      #:factor (/ staff-height pt 20)
+    )) 
+}
 
 \layout {
   \override HorizontalBracketText.font-family = #'sans
