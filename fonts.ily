@@ -9,7 +9,7 @@ $(if (ly:version? >= '(2 25 4))
           fonts = #(set-global-fonts
               #:sans "Futura PT,Jost"
               #:factor (/ staff-height pt 20)
-            )) 
+            )
        }
      #})
 
