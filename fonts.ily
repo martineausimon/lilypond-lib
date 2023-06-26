@@ -7,7 +7,7 @@
 $(if (ly:version? >= '(2 25 4))
      #{
        \paper {
-         fonts.sans = "Futura PT,Jost"
+         property-defaults.fonts.sans = "Futura PT,Jost"
        }
      #}
      #{
