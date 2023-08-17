@@ -3,7 +3,7 @@
 This is my personal framework for LilyPond scores. It's a WIP, and I regularly make additions or modifications.
 
 <details>
-<summary>**SCORE EXAMPLES**</summary>
+<summary>SCORE EXAMPLES</summary>
 
 <p align="center">
 <img src="https://user-images.githubusercontent.com/89019438/261419196-7d16ba7e-72ea-4166-b730-11a1fd034b5e.jpg">
