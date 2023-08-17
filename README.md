@@ -2,6 +2,18 @@
 
 This is my personal framework for LilyPond scores. It's a WIP, and I regularly make additions or modifications.
 
+<details>
+<summary>**SCORE EXAMPLES**</summary>
+
+<p align="center">
+<img src="https://user-images.githubusercontent.com/89019438/261419196-7d16ba7e-72ea-4166-b730-11a1fd034b5e.jpg">
+</p>
+
+<p align="center">
+<img src="https://user-images.githubusercontent.com/89019438/261419623-82890fde-b574-4395-a620-02b0591f90a9.jpg">
+</p>
+</details>
+
 ## Installation
 
 Clone this repository :
@@ -19,7 +31,7 @@ Add `lilypond-lib/` dir to [LilyPond include path](https://lilypond.org/doc/v2.2
 
 ## Stylesheet & fonts
 
-This framework is based on the "Futura PT" font, which is not open source. That's why this repository contains the "Jost" font, an open source alternative ([OFL](https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL)) that is very similar as a fallback font if you can't use Futura PT.
+This framework is based on the "Futura PT" font.
 
 Adapt and add this lines to `~/.config/fontconfig/conf.d/10-lilypond-fonts.conf` to install Jost fonts :
 
