@@ -31,9 +31,9 @@ Add `lilypond-lib/` dir to [LilyPond include path](https://lilypond.org/doc/v2.2
 
 ## Stylesheet & fonts
 
-This framework is based on the "Futura PT" font.
+This framework is based on [Futura PT](https://fonts.adobe.com/fonts/futura-pt) font.
 
-Adapt and add this lines to `~/.config/fontconfig/conf.d/10-lilypond-fonts.conf` to install Jost fonts :
+Adapt and add this lines to `~/.config/fontconfig/conf.d/10-lilypond-fonts.conf` to install Futura fonts :
 
 ```xml
 <?xml version='1.0'?>
