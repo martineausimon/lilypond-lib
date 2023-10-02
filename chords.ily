@@ -22,8 +22,11 @@ chExceptionMusic = {
   <c e g bes des'>      -\markup { \super { "7(" \hiFl "9)" } }
   <c e g bes des' a'>   -\markup { \super { "7(" \hiFl "9,13)" } }
   <c e g bes dis' a'>   -\markup { \super { "7(" \hiSh "9,13)" } }
+  <c e g bes d'>        -\markup { \super "7(9)" }
   <c e g bes d' a'>     -\markup { \super "7(9,13)" }
+  <c e g bes d' aes'>   -\markup { \super { "7(9," \hiFl "13)" } }
   <c e g bes a'>        -\markup { \super "7(13)" }
+  <c e g bes aes'>      -\markup { \super { "7(" \hiFl "13)" } }
   <c e g b fis'>        -\markup { \super { \delta \hiSh 11 } }
 }
 
