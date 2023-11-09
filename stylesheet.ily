@@ -12,33 +12,26 @@
   score-system-spacing.basic-distance  = #30
   bookTitleMarkup = \markup {
     \override #'(baseline-skip . 3.5)
-    \column {
+    \sans \column {
       \fill-line { \fromproperty #'header:dedication }
       \override #'(baseline-skip . 3.5)
       \column {
+        \fill-line { 
+          \fontsize #10
+          \fromproperty #'header:title }
+        \fill-line { \large \fromproperty #'header:subtitle }
         \fill-line {
-          \fontsize #10 \sans
-          \fromproperty #'header:title
-        }
-        \fill-line {
-          \large \sans
-          \fromproperty #'header:subtitle
-        }
-        \fill-line {
-          \smaller \sans
+          \raise #1 \smaller
           \fromproperty #'header:subsubtitle
         }
         \fill-line {
-          \sans \fromproperty #'header:poet
-          { 
-            \bold \sans
-            \large \fromproperty #'header:instrument 
-          }
-          \sans \fromproperty #'header:composer
+          \fromproperty #'header:poet
+          { \large \bold \fromproperty #'header:instrument }
+          \fromproperty #'header:composer
         }
         \fill-line {
-          \sans \fromproperty #'header:meter
-          \sans \fromproperty #'header:arranger
+          \fromproperty #'header:meter
+          \fromproperty #'header:arranger
         }
       }
     }
