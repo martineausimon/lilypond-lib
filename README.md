@@ -10,6 +10,10 @@ This is my personal framework for LilyPond scores. It's a WIP, and I regularly m
 </p>
 
 <p align="center">
+<img src="https://user-images.githubusercontent.com/89019438/281694651-a93fc2ec-3b5f-4c0e-bc94-b27b10d0e367.jpg">
+</p>
+
+<p align="center">
 <img src="https://user-images.githubusercontent.com/89019438/261419623-82890fde-b574-4395-a620-02b0591f90a9.jpg">
 </p>
 </details>
@@ -25,8 +29,9 @@ git clone https://github.com/martineausimon/lilypond-lib
 Add `lilypond-lib/` dir to [LilyPond include path](https://lilypond.org/doc/v2.24/Documentation/notation/including-lilypond-files), [install fonts](https://github.com/martineausimon/lilypond-lib#stylesheet--fonts), then use :
 
 ```lilypond
-\version "2.24.1"
+\version "2.24.2"
 \include "lilypond-lib.ily"
+%\include "stylesheet-alt.ly" %% Alternative stylesheet
 ```
 
 ## Stylesheet & fonts
@@ -142,8 +147,41 @@ Add barre indication for fretted strings instruments
 
 Add several notes/chords between parenthesis :
 
+<img src="https://user-images.githubusercontent.com/89019438/281695940-e7acc600-ede4-4f84-b5a2-0f429f0a9ecb.png">
+
 ```lilypond
 \relative c' {
   \openParen a b c \closeParen d
 }
 ```
+
+### `\xBook` tool
+
+Use this function instead of `\book` to compile pdf with personalized odd and even headers. This function takes a string for argument, which will be used for `\bookOutputSuffix` and printed in `oddHeaderMarkup` and `evenHeaderMarkup`. The second argument must be a sheme list containing scores. Useful for transposed music :
+
+<img src="https://user-images.githubusercontent.com/89019438/281694805-4fca5f26-40c2-429a-8b25-a5be6dad4f66.png">
+
+```lilypond
+\version "2.25.9"
+\include "lilypond-lib.ily"
+
+\header {
+  title       = "TITLE"
+  subtitle    = "Subtitle"
+  subsubtitle = "subsubtitle"
+  composer    = "Composer"
+}
+
+music = \relative c'' {
+  \repeat unfold 20 {
+    c1 d e f \break
+  }  
+}
+
+musicBb = \transpose c d \music
+
+\xBook ""   #(list #{ \music #})
+\xBook "Bb" #(list #{ \musicBb #})
+```
+
+
