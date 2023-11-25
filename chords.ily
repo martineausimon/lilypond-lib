@@ -6,6 +6,7 @@ sN     = \markup { "6" \xSlash "9" }
 
 chExceptionMusic = {
   <c f g a bes>         -\markup { \super "7sus4(add6)" }
+  <c f g bes des'>      -\markup { \super { "7sus4(" \hiFl "9)"} }
   <c ees ges bes>       -\markup { \super \fontsize #1.5 "ø" }
   <c ees ges>           -\markup { \super \fontsize #1.5 "o" }
   <c ees ges beses>     -\markup { \super { \fontsize #1.5 "o" "7" } }
@@ -28,6 +29,7 @@ chExceptionMusic = {
   <c e g bes a'>        -\markup { \super "7(13)" }
   <c e g bes aes'>      -\markup { \super { "7(" \hiFl "13)" } }
   <c e g b fis'>        -\markup { \super { \delta \hiSh 11 } }
+  <c e g b d' a'>        -\markup { \super { \delta "(9,13)" } }
 }
 
 chExceptions = 
