@@ -24,9 +24,11 @@
 }
 
 #(define subtitle-no-year 
-   (lambda (layout props str)
-     (let ((pat (ly:make-regex " \\(\\d{4}\\)")))
-       (ly:regex-replace pat str))))
+  (lambda (layout props str)
+    (if (ly:version? >= '(2 25 4))
+        (let ((pat (ly:make-regex " \\(\\d{4}\\)")))
+          (ly:regex-replace pat str))
+        str)))
 
 xBook = 
 #(define-void-function (key scores)
