@@ -14,6 +14,7 @@
   \override TextSpanner.style = #'dashed-line
   \override TextSpanner.dash-fraction = #0.3
   \override TextSpanner.dash-period = #1
+  \override MultiMeasureRest.expand-limit = #2
   \override DynamicTextSpanner.style = #'dashed-line
   \override DynamicTextSpanner.dash-fraction = #0.3
   \override DynamicTextSpanner.dash-period = #1
