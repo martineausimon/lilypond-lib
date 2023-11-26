@@ -145,7 +145,8 @@ Add barre indication for fretted strings instruments
 
 ### Parenthesis tool
 
-Add several notes/chords between parenthesis :
+Add several notes/chords between parenthesis, with a size (optional)  
+`\openParen [size num (optional)] [fist note] ... \closeParen [size num (optional)] [last note]`
 
 <img src="https://user-images.githubusercontent.com/89019438/281695940-e7acc600-ede4-4f84-b5a2-0f429f0a9ecb.png">
 
