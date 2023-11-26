@@ -205,17 +205,19 @@ xBook =
          (list null-par (cadr par-list))))) 
 
 openParen = 
-#(define-music-function (parser location note) 
-   (ly:music?) 
+#(define-music-function (parser location size note) 
+   ((number? #f) ly:music?) 
    #{ 
+     \once \override Parentheses.font-size = #size
      \once \override Parentheses.stencils = #(paren-stencil #t) 
      \parenthesize #note 
    #}) 
 
 closeParen = 
-#(define-music-function (parser location note) 
-   (ly:music?) 
+#(define-music-function (parser location size note) 
+   ((number? #f) ly:music?) 
    #{ 
+     \once \override Parentheses.font-size = #size
      \once \override Parentheses.stencils = #(paren-stencil #f) 
      \parenthesize #note 
    #})
