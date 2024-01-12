@@ -4,6 +4,15 @@
     (lambda (grob original)
       (rounded-box-stencil original thickness padding radius))))
 
+$(if (ly:version? >= '(2 25 4))
+     #{
+       \layout {
+         \set Score.printInitialRepeatBar = ##t
+       }
+     #}
+     ""
+     )
+
 \layout {
   \set Staff.explicitClefVisibility         = #end-of-line-invisible
   \set Staff.explicitKeySignatureVisibility = #end-of-line-invisible
