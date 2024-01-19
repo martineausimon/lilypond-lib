@@ -27,11 +27,6 @@ xSpan =
                $txt \hspace #0.3 
              }
            #})
-      \once \override TextSpanner.style = #'dashed-line
-      \once \override TextSpanner.dash-fraction = #0.3
-      \once \override TextSpanner.dash-period = #1
-      \once \override TextSpanner.staff-padding = #3
-      \once \override TextSpanner.direction = #DOWN
       <>\startTextSpan $mus \stopTextSpan #})
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
