@@ -26,7 +26,7 @@ Clone this repository :
 git clone https://github.com/martineausimon/lilypond-lib
 ```
 
-Add `lilypond-lib/` dir to [LilyPond include path](https://lilypond.org/doc/v2.24/Documentation/notation/including-lilypond-files), [install fonts](https://github.com/martineausimon/lilypond-lib#stylesheet--fonts), then use :
+Add `lilypond-lib/` dir to [LilyPond include path](https://lilypond.org/doc/v2.24/Documentation/notation/including-lilypond-files) then use :
 
 ```lilypond
 \version "2.24.2"
@@ -38,17 +38,7 @@ Add `lilypond-lib/` dir to [LilyPond include path](https://lilypond.org/doc/v2.2
 
 This framework is based on [Futura PT](https://fonts.adobe.com/fonts/futura-pt) font.
 
-Adapt and add this lines to `~/.config/fontconfig/conf.d/10-lilypond-fonts.conf` to install Futura fonts :
-
-```xml
-<?xml version='1.0'?>
-<!DOCTYPE fontconfig SYSTEM 'fonts.dtd'>
-<fontconfig>
-  <dir>/path/to/lilypond-lib/fonts/</dir>
-</fontconfig>
-```
-
-Then run `fc-cache -f`
+All fonts are included in the repository, and loaded with `#(ly:font-config-add-directory "./fonts/")`
 
 ## Tools
 
