@@ -36,4 +36,13 @@
       }
     }
   }
+  scoreTitleMarkup = \markup {
+    \column {
+      \if \should-print-all-headers { \bookTitleMarkup \hspace #1 }
+      \sans \fill-line \fontsize #6 {
+        \fromproperty #'header:piece
+        \fromproperty #'header:opus
+      }
+    }
+  }
 }

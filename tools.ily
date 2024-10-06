@@ -7,7 +7,21 @@ marquage =
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-kick = \withMusicProperty untransposable ##t \xNote \etc
+beat = 
+#(define-music-function (beats)
+   (number?)
+   #{
+     \new Voice \with { \consists Pitch_squash_engraver } 
+     { \improvisationOn \repeat unfold $beats { \once \omit Voice.Stem d4 } \improvisationOff } #})
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+kick = 
+#(define-music-function (mus)
+   (ly:music?)
+   #{
+     \once \omit Accidental \withMusicProperty untransposable ##t \xNote $mus
+   #})
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
