@@ -7,6 +7,26 @@ marquage =
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+hiddenPitch =
+#(define-music-function (position mus)
+   ((number? 7) ly:music?)
+   #{
+     \new Voice \with { \consists Pitch_squash_engraver }
+     { 
+       \set squashedPosition = #position
+       \override NoteHead.no-ledgers = ##t
+       #(if (< position 0)
+            #{ \stemDown #}
+            #{ \stemUp #})
+       \hide Voice.NoteHead
+       \hide Voice.Accidental
+       $mus
+     }
+   #}
+   )
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 beat = 
 #(define-music-function (beats)
    (number?)
@@ -201,8 +221,8 @@ xBook =
         }
       }
       $@scores
-     } 
-  #}))
+       } 
+    #}))
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -230,3 +250,27 @@ closeParen =
      \once \override Parentheses.stencils = #(paren-stencil #f) 
      \parenthesize #note 
    #})
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+#(define (custom-line-breaks-engraver bar-list)
+   (let* ((working-copy bar-list)
+          (total (1+ (car working-copy))))
+     (lambda (context)
+       (make-engraver
+        (acknowledgers ((paper-column-interface engraver grob
+                                                source-engraver)
+                        (let ((internal-bar (ly:context-property context
+                                                                 'internalBarNumber)))
+                          (if (and (pair? working-copy)
+                                   (= (remainder internal-bar total) 0)
+                                   (eq? #t (ly:grob-property grob 'non-musical)))
+                              (begin
+                               (set! (ly:grob-property grob 'line-break-permission)
+                                     'force)
+                               (if (null? (cdr working-copy))
+                                   (set! working-copy bar-list)
+                                   (begin
+                                    (set! working-copy (cdr working-copy))))
+                               (set! total (+ total (car working-copy))))))))))))
+
