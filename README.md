@@ -77,6 +77,8 @@ Insert beats for rhythm section :
 
 Hide pitches. Useful for an educational document :
 
+`\hiddenPitch [num (optional, raise stems)]`
+
 ![](https://github.com/user-attachments/assets/8be5d475-3b62-40c7-8a7d-88565c032d17)
 
 ```lilypond
