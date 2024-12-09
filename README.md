@@ -73,6 +73,18 @@ Insert beats for rhythm section :
 >>
 ```
 
+### `\hiddenPitch`
+
+Hide pitches. Useful for an educational document :
+
+![](https://github.com/user-attachments/assets/8be5d475-3b62-40c7-8a7d-88565c032d17)
+
+```lilypond
+\relative c'' {
+  g4 g8 a b4 b \hiddenPitch { fis4 fis8 gis a4 } a
+}
+```
+
 ### `\kick`
 
 Insert a non-transposable `\xNote` :
