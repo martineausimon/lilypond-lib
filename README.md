@@ -95,16 +95,16 @@ Add rhythm indications at the top/bottom of the staff :
 
 ```lilypond
 \relative c' {
-	\key ees \major
-	<<
-		\rhythmMarks 9 {
-			\repeat unfold 3 { r8 d r4 d2 }
-		}
-		\\
-		{
-			ees2. g8 f~f2. aes8 g~g1
-		}
-	>>
+  \key ees \major
+  <<
+    \rhythmMarks 9 {
+      \repeat unfold 3 { r8 d r4 d2 }
+    }
+    \\
+    {
+      ees2. g8 f~f2. aes8 g~g1
+    }
+  >>
 }
 ```
 
