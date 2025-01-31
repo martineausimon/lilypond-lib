@@ -2,28 +2,51 @@ marquage =
 #(define-music-function (mus)
    (ly:music?)
    #{
-     \new Voice \with { \consists Pitch_squash_engraver } 
+     \new Voice \with { \consists Pitch_squash_engraver }
      { \improvisationOn $mus \improvisationOff } #})
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-hiddenPitch =
+hidePitches =
 #(define-music-function (position mus)
    ((number? 7) ly:music?)
    #{
-     \new Voice \with { \consists Pitch_squash_engraver }
-     { 
-       \set squashedPosition = #position
+     \new Voice \with {
+       \consists Pitch_squash_engraver
        \override NoteHead.no-ledgers = ##t
+       squashedPosition = #position
        #(if (< position 0)
             #{ \stemDown #}
             #{ \stemUp #})
        \hide Voice.NoteHead
        \hide Voice.Accidental
-       $mus
      }
+     $mus
    #}
    )
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+rhythmMarks =
+#(define-music-function (position rhythms)
+   ((number? 7) ly:music?)
+   #{
+     \new Voice \with {
+       \consists Pitch_squash_engraver
+       \improvisationOn
+       \override MultiMeasureRest.staff-position = #position
+       \override Rest.staff-position = #position
+       \override NoteHead.no-ledgers = ##t
+       fontSize = -3
+       squashedPosition = #position
+       #(if (< position 0)
+            #{ \stemDown #}
+            #{ \stemUp #})
+     }
+     $rhythms
+   #}
+   )
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -32,7 +55,7 @@ beat =
    (number?)
    #{
      \new Voice \with { \consists Pitch_squash_engraver } 
-     { \improvisationOn \repeat unfold $beats { \once \omit Voice.Stem d4 } \improvisationOff } #})
+     { \improvisationOn \repeat unfold $beats { \once \omit Voice.Stem c4 } \improvisationOff } #})
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

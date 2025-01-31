@@ -73,19 +73,42 @@ Insert beats for rhythm section :
 >>
 ```
 
-### `\hiddenPitch`
+### `\hidePitches`
 
 Hide pitches. Useful for an educational document :
 
-`\hiddenPitch [num (optional, raise stems)]`
+`\hidePitches [num (optional, raise stems)]`
 
 ![](https://github.com/user-attachments/assets/8be5d475-3b62-40c7-8a7d-88565c032d17)
 
 ```lilypond
 \relative c'' {
-  g4 g8 a b4 b \hiddenPitch { fis4 fis8 gis a4 } a
+  g4 g8 a b4 b \hidePitches { fis4 fis8 gis a4 } a
 }
 ```
+
+### `\rhythmMarks`
+
+Add rhythm indications at the top/bottom of the staff :
+
+`\rhythmMarks [num (optional, raise rhythms)]`
+
+```lilypond
+\relative c' {
+	\key ees \major
+	<<
+		\rhythmMarks 9 {
+			\repeat unfold 3 { r8 d r4 d2 }
+		}
+		\\
+		{
+			ees2. g8 f~f2. aes8 g~g1
+		}
+	>>
+}
+```
+
+![](https://github.com/user-attachments/assets/d0f7f62b-107e-4756-ae6d-5b73b1fb7acb)
 
 ### `\kick`
 
