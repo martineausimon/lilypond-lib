@@ -73,6 +73,55 @@ Insert beats for rhythm section :
 >>
 ```
 
+### `\pitchPolygon`
+
+A markup command that generates a graphical representation of pitch classes on a circle, connecting the played notes with a polygon (solid or dotted line style). Inspired by the graphical approaches of musicians like Miles Okazaki and Steve Coleman
+
+Used properties are :
+
+* `size` (default 4)
+* `polygon-style` : dotted, line or none (default line)
+* `thickness` (default 2)
+* `polygon-thickness` (default = `thickness`)
+* `dots-thickness` (default = `thickness * 0.5`)
+
+![](https://github.com/user-attachments/assets/8fc44098-ee2d-4445-852a-c341333d0c04)
+
+```lilypond
+\markup \line {
+  \pitchPolygon { c e g b }
+  \hspace #1
+  \override #'(polygon-style . dotted) \pitchPolygon { c e aes }
+  \hspace #1
+  \overlay {
+    \override #'(polygon-style . dotted)
+    \pitchPolygon { c ees fis a }
+    \pitchPolygon { d f aes b }
+  }
+}
+```
+
+![](https://github.com/user-attachments/assets/942dfd4d-3489-45c4-88e0-3fcbfbca6a22)
+
+```lilypond
+\score {
+  \layout {
+    indent = 1.2\cm
+    ragged-right = ##t
+  }
+  \new Staff \with {
+    instrumentName = \markup {
+      \pad-around #1
+      \override #'(size . 5)
+      \pitchPolygon { c d ees e fis g aes bes b }
+    }
+  } \relative c' {
+    \cadenzaOn \omit Staff.Stem \omit Staff.TimeSignature
+    c d ees e fis g aes bes b 
+  }
+}
+```
+
 ### `\hidePitches`
 
 Hide pitches. Useful for an educational document :
@@ -238,5 +287,3 @@ musicBb = \transpose c d \music
 \xBook ""   #(list #{ \music #})
 \xBook "Bb" #(list #{ \musicBb #})
 ```
-
-
