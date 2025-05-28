@@ -85,7 +85,7 @@ Used properties are :
 * `polygon-thickness` (default = `thickness`)
 * `dots-thickness` (default = `thickness * 0.5`)
 
-![](https://github.com/user-attachments/assets/8fc44098-ee2d-4445-852a-c341333d0c04)
+![](https://github.com/user-attachments/assets/3f0a2fec-4692-4145-86ad-35161ec3d53b)
 
 ```lilypond
 \markup \line {
@@ -98,6 +98,8 @@ Used properties are :
     \pitchPolygon { c ees fis a }
     \pitchPolygon { d f aes b }
   }
+  \hspace #1
+  \pitchPolygon { d gis }
 }
 ```
 
