@@ -84,14 +84,18 @@ Used properties are :
 * `thickness` (default 2)
 * `polygon-thickness` (default = `thickness`)
 * `dots-thickness` (default = `thickness * 0.5`)
+* `pitch-name` (default = `#f`)
+* `pitch-fontsize` (default = `0`)
 
-![](https://github.com/user-attachments/assets/3f0a2fec-4692-4145-86ad-35161ec3d53b)
+![](https://github.com/user-attachments/assets/4276ee83-5efc-4365-a405-d123343d0a4c)
 
 ```lilypond
 \markup \line {
   \pitchPolygon { c e g b }
   \hspace #1
-  \override #'(polygon-style . dotted) \pitchPolygon { c e aes }
+  \override #'(polygon-style . dotted)
+  \override #'(pitch-name . #t)
+  \pitchPolygon { c e aes }
   \hspace #1
   \overlay {
     \override #'(polygon-style . dotted)
@@ -99,6 +103,7 @@ Used properties are :
     \pitchPolygon { d f aes b }
   }
   \hspace #1
+  \override #'(pitch-name . #t)
   \pitchPolygon { d gis }
 }
 ```
