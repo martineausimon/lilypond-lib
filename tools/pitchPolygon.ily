@@ -28,33 +28,32 @@
                (cons x y))))
           (iota (+ 1 steps) 0))))
 
-#(define (make-dotted-polygon points dot-radius spacing)
+#(define (draw-polygon points drawer)
    (apply ly:stencil-add
-          (apply append
-                 (map (lambda (i)
-                        (let* ((start (list-ref points i))
-                               (end   (list-ref points (modulo (+ i 1) (length points))))
-                               (dist  (sqrt (+ (expt (- (car end) (car start)) 2)
-                                               (expt (- (cdr end) (cdr start)) 2))))
-                               (steps (if (> spacing 0)
-                                          (inexact->exact (truncate (/ dist spacing)))
-                                          0)))
-                          (interpolate-line start end steps dot-radius)))
-                      (iota (length points))))))
+          (map (lambda (i)
+                 (let* ((start (list-ref points i))
+                        (end (list-ref points (modulo (+ i 1) (length points)))))
+                   (drawer start end)))
+               (iota (length points)))))
 
 #(define (make-polygon-stencil points thickness style)
    (case style
      ((line)
-      (apply ly:stencil-add
-             (map (lambda (i)
-                    (let* ((start (list-ref points i))
-                           (end   (list-ref points (modulo (+ i 1) (length points)))))
-                      (make-line-stencil thickness
-                                         (car start) (cdr start)
-                                         (car end)   (cdr end))))
-                  (iota (length points)))))
+      (draw-polygon
+       points
+       (lambda (start end)
+         (make-line-stencil thickness
+                            (car start) (cdr start)
+                            (car end)   (cdr end)))))
      ((dotted)
-      (make-dotted-polygon points (* thickness 0.7) 0.09))
+      (draw-polygon
+       points
+       (lambda (start end)
+         (let* ((dist (sqrt (+ (expt (- (car end) (car start)) 2)
+                               (expt (- (cdr end) (cdr start)) 2))))
+                (steps (inexact->exact (truncate (/ dist 0.09)))))
+           (apply ly:stencil-add
+                  (interpolate-line start end steps (* thickness 0.7)))))))
      (else (ly:make-stencil '()))))
 
 #(define (notename->markup pitch)
@@ -63,27 +62,11 @@
                  (vector-ref #("C" "D" "E" "F" "G" "A" "B")
                              (ly:pitch-notename pitch)))))
      (make-concat-markup
-      (cond
-       ((= alt 0) (list name))
-       ((= alt FLAT)
-        (list name
-              (make-hspace-markup 0.015)
-              (make-fontsize-markup -3
-                (make-raise-markup 0.05 (make-flat-markup)))))
-       ((= alt DOUBLE-FLAT)
-        (list name
-              (make-hspace-markup 0.015)
-              (make-fontsize-markup -3
-                (make-raise-markup 0.05 (make-doubleflat-markup)))))
-       ((= alt SHARP)
-        (list name
-              (make-fontsize-markup -3
-                (make-raise-markup 0.1 (make-sharp-markup)))))
-       ((= alt DOUBLE-SHARP)
-        (list name
-              (make-fontsize-markup -3
-                (make-raise-markup 0.04 (make-doublesharp-markup)))))
-       (else (list name))))))
+      (list name
+            (if (= alt 0)
+                (markup "")
+                (make-hspace-markup 0.015))
+            (make-alteration-markup alt 0.1)))))
 
 #(define (make-note-labels layout props pitch-name-mode pitch-fontsize played-indices pitch-list)
    (if (not pitch-name-mode)
@@ -102,7 +85,10 @@
 
 #(define (make-dots-circle-with-labels layout props pitch-list polygon-style thickness dots-thickness pitch-name-mode pitch-fontsize)
    (define all-indices (iota 12))
-   (define played-indices (sort (map pitch-to-class pitch-list) <))
+   (define played-pairs (sort (map (lambda (p) (cons (pitch-to-class p) p)) pitch-list)
+                             (lambda (a b) (< (car a) (car b)))))
+   (define played-indices (map car played-pairs))
+   (define played-pitches (map cdr played-pairs))
    (define played-points (map index->pos played-indices))
 
    (define (dot i)
@@ -119,7 +105,7 @@
         (ly:make-stencil '()))
     (apply ly:stencil-add (map dot all-indices))
     (apply ly:stencil-add
-           (make-note-labels layout props pitch-name-mode pitch-fontsize played-indices pitch-list))))
+           (make-note-labels layout props pitch-name-mode pitch-fontsize played-indices played-pitches))))
 
 
 #(define-markup-command (pitchPolygon layout props music)
