@@ -38,38 +38,31 @@ chExceptions =
     (sequential-music-to-chord-exceptions chExceptionMusic #t)
     ignatzekExceptions)
 
+#(define (make-alteration-markup alt scale)
+   (let ((s (if (number? scale) scale 1)))
+     (cond
+       ((= alt 0) (markup ""))
+       ((= alt FLAT)
+        (make-fontsize-markup -3
+          (make-raise-markup (* scale 0.50) (make-flat-markup))))
+       ((= alt SHARP)
+        (make-fontsize-markup -3
+          (make-raise-markup (* scale 1.00) (make-sharp-markup))))
+       ((= alt DOUBLE-FLAT)
+        (make-fontsize-markup -3
+          (make-raise-markup (* scale 0.50) (make-doubleflat-markup))))
+       ((= alt DOUBLE-SHARP)
+        (make-fontsize-markup -3
+          (make-raise-markup (* scale 0.40) (make-doublesharp-markup))))
+       (else (markup "?")))))
+
 #(define (chordNamer pitch majmin)
-  (let* ((alt (ly:pitch-alteration pitch)))
-    (make-line-markup
-    (list
-      (make-simple-markup 
-        (vector-ref #("C" "D" "E" "F" "G" "A" "B")
-          (ly:pitch-notename pitch)))
-      (if (= alt 0)
-        (markup "")
-      (if (= alt FLAT)
-        (make-line-markup
-          (list
-            (make-fontsize-markup -3
-              (make-raise-markup 0.50
-                (make-flat-markup)))))
-      (if (= alt DOUBLE-SHARP)
-        (make-line-markup
-          (list
-            (make-fontsize-markup -3
-              (make-raise-markup 0.40
-                (make-doublesharp-markup)))))
-      (if (= alt DOUBLE-FLAT)
-        (make-line-markup
-          (list
-            (make-fontsize-markup -3
-              (make-raise-markup 0.50
-                (make-doubleflat-markup)))))
-      (make-line-markup
-        (list
-          (make-fontsize-markup -3
-            (make-raise-markup 1
-              (make-sharp-markup)))))))))))))
+   (let* ((alt (ly:pitch-alteration pitch))
+          (note (make-simple-markup
+                 (vector-ref #("C" "D" "E" "F" "G" "A" "B")
+                             (ly:pitch-notename pitch)))))
+     (make-line-markup
+      (list note (make-alteration-markup alt 1)))))
 
 \layout {
   \set slashChordSeparator = \xSlash
