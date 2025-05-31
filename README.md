@@ -80,12 +80,12 @@ A markup command that generates a graphical representation of pitch classes on a
 Used properties are :
 
 * `size` (default 4)
-* `polygon-style` : dotted, line or none (default line)
-* `thickness` (default 2)
-* `polygon-thickness` (default = `thickness`)
-* `dots-thickness` (default = `thickness * 0.5`)
-* `pitch-name` (default = `#f`)
-* `pitch-fontsize` (default = `0`)
+* `polygon-style` : dotted, line or none – default `line`
+* `thickness` – default `2`
+* `polygon-thickness` – default `#f` (`thickness` value will be used)
+* `dots-thickness` – default `#f` (`thickness` value will be used)
+* `pitch-name` – default `#f`
+* `pitch-fontsize` – default `0`
 
 ![](https://github.com/user-attachments/assets/4276ee83-5efc-4365-a405-d123343d0a4c)
 
