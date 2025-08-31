@@ -158,6 +158,7 @@ Add rhythm indications at the top/bottom of the staff :
     }
     \\
     {
+      \override Voice.Rest.Y-offset = 0
       ees2. g8 f~f2. aes8 g~g1
     }
   >>
