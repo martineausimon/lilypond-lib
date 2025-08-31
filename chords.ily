@@ -8,6 +8,7 @@ chExceptionMusic = {
   <c f g a bes>         -\markup { \super "7sus4(add6)" }
   <c f g bes des'>      -\markup { \super { "7sus4(" \hiFl "9)"} }
   <c ees ges bes>       -\markup { \super \fontsize #1.5 "ø" }
+  <c ees ges bes d'>    -\markup { "m" \super { "9(" \hiFl "5)" } }
   <c ees ges>           -\markup { \super \fontsize #1.5 "o" }
   <c ees ges beses>     -\markup { \super { \fontsize #1.5 "o" "7" } }
   <c ees g a d'>        -\markup { "m" \super { \sN } }
@@ -17,6 +18,7 @@ chExceptionMusic = {
   <c e f g bes>         -\markup { \super "7(add4)" }
   <c e f g bes d'>      -\markup { \super "9(add4)" }
   <c e f g bes a'>      -\markup { \super "13(add4)" }
+  <c e g d'>            -\markup { \super "add9" }
   <c e g a d'>          -\markup { \super \sN }
   <c e g a d' fis'>     -\markup { \super { \sN "(" \hiSh "11)" } }
   <c e g bes des' aes'> -\markup { \super "7(alt)" }
