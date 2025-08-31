@@ -1,12 +1,69 @@
 \include "./tools/naturalizeMusic.ily"
 \include "./tools/pitchPolygon.ily"
 
-marquage = 
+marquage =
 #(define-music-function (mus)
    (ly:music?)
    #{
      \new Voice \with { \consists Pitch_squash_engraver }
      { \improvisationOn $mus \improvisationOff } #})
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+xBreak =
+#(define-scheme-function
+  (h)
+  (number?)
+  #{
+    \once \override Score.NonMusicalPaperColumn.line-break-system-details =
+      #(list (cons 'extra-offset (cons 0 h)))
+    \break
+  #})
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+staccatos =
+#(define-music-function (parser location music) (ly:music?)
+   (music-map
+    (lambda (m)
+      (cond
+       ((or (music-is-of-type? m 'note-event)
+            (music-is-of-type? m 'event-chord))
+        (set! (ly:music-property m 'articulations)
+              (cons (make-music 'ArticulationEvent 'articulation-type 'staccato)
+                    (ly:music-property m 'articulations)))
+        m)
+       (else m)))
+    music))
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+mesure =
+#(define-music-function
+  (num)
+  (scheme?)
+  (let* (
+    (main-num (if (list? num) (car num) num))
+    (alt-num (if (and (list? num) (> (length num) 1)) (cadr num) #f))
+    (main-str (number->string main-num))
+    (hspace-width (* 0.9 (string-length main-str)))
+  )
+   #{
+     \set Score.currentBarNumber = #main-num
+     \once \override Score.BarNumber.stencil =
+       #(lambda (grob)
+          (grob-interpret-markup grob
+            (if alt-num
+                #{ \markup {
+                    \fontsize #-3 \raise #1.8
+                    \concat {
+                      "[" #(number->string alt-num) "]"
+                    }
+                      \hspace #(- hspace-width) #main-str
+                  } #}
+                #{ \markup #main-str #}
+            )))
+   #}))
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -42,10 +99,10 @@ rhythmMarks =
        \override NoteHead.no-ledgers = ##t
        fontSize = -3
        squashedPosition = #position
+       \voiceOne
        #(if (< position 0)
             #{ \stemDown #}
             #{ \stemUp #})
-     \voiceOne
      }
      $rhythms
    #}
