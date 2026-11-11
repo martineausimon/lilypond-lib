@@ -1,5 +1,6 @@
 \include "./tools/naturalizeMusic.ily"
 \include "./tools/pitchPolygon.ily"
+\include "./tools/talea.ily"
 
 marquage =
 #(define-music-function (mus)
